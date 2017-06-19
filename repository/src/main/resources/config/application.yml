@@ -1,0 +1,42 @@
+# issues
+#   filter: assined, created, mentioned, subscribed, all
+#   state: open, closed, all
+#   labels: A list of comma separated label names. Example: bug,ui,@high
+#   sort: created, updated, comments
+#   direction: asc, desc
+#   since: Only issues updated at or after this time are returned. This is a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ.
+
+settings:
+  issues:
+    -
+      type: github
+      api_root: https://api.github.com
+      token: f455d8b5f703df70a93fbc52187d1820820a7fbe
+      org: tensorflow
+      filter: all
+      state: all
+      labels: 
+      sort: created
+      direction: asc
+      since: 
+      save_path: D:\temp\issues
+      save_file_prefix: tensorflow_
+    -
+      type: github
+      api_root: https://api.github.com
+      token: f455d8b5f703df70a93fbc52187d1820820a7fbe
+      org: test
+      filter: all
+      state: all
+      labels: 
+      sort: created
+      direction: asc
+      since: 
+      save_path: D:\temp\issues
+      save_file_prefix: terasolunaorg_
+proxy:
+  use_proxy: false
+  server: com.example
+  port: 8080
+  user_id: userid
+  password: passwd
