@@ -38,8 +38,6 @@ public class RepositoryApplication {
 	
 	@Autowired
 	private ConfigReader configReader;
-	//@Autowired
-	//private RestTemplate restTemplate;
 
 	public static void main(String[] args) {
 		try (ConfigurableApplicationContext context = SpringApplication.run(RepositoryApplication.class, args)) {
@@ -64,35 +62,19 @@ public class RepositoryApplication {
 			try {
 				URI uriForRepositories = new URI(urlForRepositories);
 				RestOperations restOperations = restTemplateBuilder.build();
-				//String test = restOperations.getForObject(urlForRepositories, String.class);
 				HttpHeaders headers = new HttpHeaders();
 				headers.add("Authorization", "token " + issueSettings.getToken());
 				LinkedMultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
 				params.add("state", "all");
 				HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(params, headers);
-				//Repository[] todoArray = restOperations.postForObject(uriForRepositories, requestEntity, Repository[].class);
-				//String test = restOperations.getForObject(uriForRepositories, requestEntity, String.class);
 				HttpEntity entity = new HttpEntity(headers);
-				//ResponseEntity<String> test = restOperations.exchange(urlForRepositories, HttpMethod.GET, entity, String.class);
-				//ResponseEntity<Repository[]> test = restOperations.exchange(urlForRepositories, HttpMethod.GET, entity, Repository[].class);
-				//System.out.println(test.getBody());
-				
-				/*
-				RestTemplate restTemplate = new RestTemplate();
-				Repository[] rateResponse =
-				        restTemplate.getForObject("https://api.github.com/user/orgs?access_token=f455d8b5f703df70a93fbc52187d1820820a7fbe", Repository[].class);
-				*/
-				
 				RestTemplate restTemplate = new RestTemplate();
 				ResponseEntity<List<Object>> responseEntity = restTemplate.exchange(urlForRepositories,
 				                    HttpMethod.GET, entity, new ParameterizedTypeReference<List<Object>>() {});
-				
 				List<Object> repositories = responseEntity.getBody();
 				for (Object object : repositories) {
 					LinkedHashMap map = (LinkedHashMap)object;
 					String repositoryName = (String)map.get("name");
-					
-
 					// issue取得APIのURL組み立て
 					String urlForIssues = makeUrlForIssues(issueSettings, repositoryName);
 					if (StringUtils.isEmpty(urlForIssues)) {
@@ -127,52 +109,7 @@ public class RepositoryApplication {
 				System.out.println("[ERROR] api_root:" + issueSettings.getApiRoot());
 				System.out.println(ex.getStackTrace());
 			}
-			/*
-			try {
-				URI uriForRepositories = new URI(urlForRepositories);
-				RestTemplate restTemplate = new RestTemplate();
-				List<Repository> repositoryList = new ArrayList();
-				RequestEntity<List<Repository>> requestEntity = RequestEntity.post(uriForRepositories).body(repositoryList);
-				ResponseEntity<List<Repository>> responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<Repository>>() {});
-			} catch (URISyntaxException ex) {
-				System.out.println("[ERROR] failed to make uri for api access");
-				System.out.println("[ERROR] api_root:" + issueSettings.getApiRoot());
-				System.out.println(ex.getStackTrace());
-			}
-			*/
-			
-			
-			// json取得
-			//try {
-				//RestTemplate restTemplate = new RestTemplate();
-		        //String test = restTemplate.getForObject(url, String.class);
-		        //System.out.println(test);
-
-		        /*
-				URI uri = new URI(url);
-				RequestEntity requestEntity = RequestEntity.get(uri).build();
-				ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
-				System.out.println(responseEntity.getBody());
-				*/
-		    /*
-			} catch (URISyntaxException ex) {
-				System.out.println("[ERROR] failed to make uri for api access");
-				System.out.println("[ERROR] api_root:" + issueSettings.getApiRoot());
-				System.out.println(ex.getStackTrace());
-			}
-			*/
 		}
-		System.out.println("download");
-        System.out.println("useProxy = " + configReader.getProxySettings().isUseProxy());
-        System.out.println("server = " + configReader.getProxySettings().getServer());
-        System.out.println("port = " + configReader.getProxySettings().getPort());
-        System.out.println("userId = " + configReader.getProxySettings().getUserId());
-        System.out.println("passoword = " + configReader.getProxySettings().getPassword());
-        System.out.println("issue = " + configReader.getSettings().getIssues().size());
-        System.out.println("issueApiRoot1 = " + configReader.getSettings().getIssues().get(0).getApiRoot());
-        System.out.println("issueOrg1 = " + configReader.getSettings().getIssues().get(0).getOrg());
-        System.out.println("issueApiRoot2 = " + configReader.getSettings().getIssues().get(1).getApiRoot());
-        System.out.println("issueOrg2 = " + configReader.getSettings().getIssues().get(1).getOrg());
 	}
 	
 	/**
