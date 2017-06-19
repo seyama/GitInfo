@@ -11,7 +11,7 @@ settings:
     -
       type: github
       api_root: https://api.github.com
-      token: f455d8b5f703df70a93fbc52187d1820820a7fbe
+      token: aaa
       org: tensorflow
       filter: all
       state: all
@@ -24,7 +24,7 @@ settings:
     -
       type: github
       api_root: https://api.github.com
-      token: f455d8b5f703df70a93fbc52187d1820820a7fbe
+      token: aaa
       org: test
       filter: all
       state: all
