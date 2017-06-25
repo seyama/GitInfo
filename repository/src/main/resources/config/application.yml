@@ -1,52 +1,64 @@
-# issues
-#   filter: assined, created, mentioned, subscribed, all
-#   state: open, closed, all
-#   labels: A list of comma separated label names. Example: bug,ui,@high
-#   sort: created, updated, comments
-#   direction: asc, desc
-#   since: Only issues updated at or after this time are returned. This is a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ.
-
 settings:
-  issues_list_file_path: D:\temp\fileinfo\issues_info.csv
-  pulls_list_file_path: D:\temp\fileinfo\pulls_info.csv
-  errors_list_file_path: D:\temp\fileinfo\errors_info.csv
-  issues_save_dir: D:\temp\issues
-  pulls_save_dir: D:\temp\pulls
-  issues:
+  save_root: D:\temp
+  data_dirname_prefix: data
+  file_info_dirname: fileinfo
+  issues_save_dirname: issues
+  pulls_save_dirname: pulls
+  issues_list_filename: issues_info.csv
+  pulls_list_filename: pulls_info.csv
+  errors_list_filename: errors_info.csv
+  download_settings:
     -
       type: github
       api_root: https://api.github.com
-      token: input_token_here
+      token: bf6bf17642b2cc26ef2f869d39913f12cc563c51
       org: tensorflow
-      filter: all
-      state: all
-      labels: 
-      sort: created
-      direction: asc
-      since: 
-      sleepSecond: 30
       identifier_prefix:
       identifier_postfix:
+      sleepSecond: 30
       repository_names:
+        - tensor2tensor
+        - models
+      issues_settings:
         -
+          filter: all
+          state: open
+          labels: 
+          sort: created
+          direction: asc
+          since: 
+      pulls_settings:
         -
+          state: all
+          head:
+          base:
+          sort:
+          direction:
     -
       type: github
       api_root: https://api.github.com
-      token: input_token_here
+      token: bf6bf17642b2cc26ef2f869d39913f12cc563c51
       org: terasolunaorg
-      filter: all
-      state: all
-      labels: 
-      sort: created
-      direction: asc
-      since: 
-      sleepSecond: 30
-      identifier_prefix: GitBucket_
+      identifier_prefix:
       identifier_postfix:
+      sleepSecond: 30
       repository_names:
+        - tutorial-apps
+      issues_settings:
         -
+          filter: all
+          state: all
+          labels: 
+          sort: created
+          direction: asc
+          since: 
+      pulls_settings:
         -
+          state: all
+          head:
+          base:
+          sort:
+          direction:
 proxy:
   use_proxy: false
   server: com.example

@@ -8,63 +8,94 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "settings")
 public class Settings {
-	private String issuesListFilePath;
+	private String saveRoot;
 
-	private String pullsListFilePath;
+	private String dataDirnamePrefix;
 
-	private String errorsListFilePath;
+	private String fileInfoDirname;
 
-	private String issuesSaveDir;
+	private String issuesSaveDirname;
 
-	private String pullsSaveDir;
+	private String pullsSaveDirname;
 
-	private List<IssueSettings> issues;
+	private String issuesListFilename;
 
-	public String getIssuesListFilePath() {
-		return issuesListFilePath;
+	private String pullsListFilename;
+
+	private String errorsListFilename;
+
+	private List<DownloadSetting> downloadSettings;
+
+	public String getSaveRoot() {
+		return saveRoot;
 	}
 
-	public void setIssuesListFilePath(String issuesListFilePath) {
-		this.issuesListFilePath = issuesListFilePath;
+	public void setSaveRoot(String saveRoot) {
+		this.saveRoot = saveRoot;
 	}
 
-	public String getPullsListFilePath() {
-		return pullsListFilePath;
+	public String getDataDirnamePrefix() {
+		return dataDirnamePrefix;
 	}
 
-	public void setPullsListFilePath(String pullsListFilePath) {
-		this.pullsListFilePath = pullsListFilePath;
+	public void setDataDirnamePrefix(String dataDirnamePrefix) {
+		this.dataDirnamePrefix = dataDirnamePrefix;
 	}
 
-	public String getErrorsListFilePath() {
-		return errorsListFilePath;
+	public String getFileInfoDirname() {
+		return fileInfoDirname;
 	}
 
-	public void setErrorsListFilePath(String errorsListFilePath) {
-		this.errorsListFilePath = errorsListFilePath;
+	public void setFileInfoDirname(String fileInfoDirname) {
+		this.fileInfoDirname = fileInfoDirname;
 	}
 
-	public String getIssuesSaveDir() {
-		return issuesSaveDir;
+	public String getIssuesSaveDirname() {
+		return issuesSaveDirname;
 	}
 
-	public void setIssuesSaveDir(String issuesSaveDir) {
-		this.issuesSaveDir = issuesSaveDir;
+	public void setIssuesSaveDirname(String issuesSaveDirname) {
+		this.issuesSaveDirname = issuesSaveDirname;
 	}
 
-	public String getPullsSaveDir() {
-		return pullsSaveDir;
+	public String getPullsSaveDirname() {
+		return pullsSaveDirname;
 	}
 
-	public void setPullsSaveDir(String pullsSaveDir) {
-		this.pullsSaveDir = pullsSaveDir;
+	public void setPullsSaveDirname(String pullsSaveDirname) {
+		this.pullsSaveDirname = pullsSaveDirname;
 	}
 
-	public List<IssueSettings> getIssues() {
-		return issues;
+	public String getIssuesListFilename() {
+		return issuesListFilename;
 	}
 
-	public void setIssues(List<IssueSettings> issues) {
-		this.issues = issues;
+	public void setIssuesListFilename(String issuesListFilename) {
+		this.issuesListFilename = issuesListFilename;
 	}
+
+	public String getPullsListFilename() {
+		return pullsListFilename;
+	}
+
+	public void setPullsListFilename(String pullsListFilename) {
+		this.pullsListFilename = pullsListFilename;
+	}
+
+	public String getErrorsListFilename() {
+		return errorsListFilename;
+	}
+
+	public void setErrorsListFilename(String errorsListFilename) {
+		this.errorsListFilename = errorsListFilename;
+	}
+
+	public List<DownloadSetting> getDownloadSettings() {
+		return downloadSettings;
+	}
+
+	public void setDownloadSettings(List<DownloadSetting> downloadSettings) {
+		this.downloadSettings = downloadSettings;
+	}
+
 }
