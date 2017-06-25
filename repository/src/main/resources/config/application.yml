@@ -38,12 +38,12 @@ settings:
       type: github
       api_root: https://api.github.com
       token: input_token_here
-      org: terasolunaorg
+      org: test
       identifier_prefix:
       identifier_postfix:
       sleepSecond: 30
       repository_names:
-        - tutorial-apps
+        - test
       issues_settings:
         -
           filter: all
